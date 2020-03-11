@@ -1,16 +1,21 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import { calculateCSR, calculateCSP } from '../App';
 
-function BenefitsSummary(
-  benefits: any,
-  valuesCSR: any,
-  valuesCSP: any,
-  values: any
-) {
-  const valueCSR = calculateCSR(values);
-  const valueCSP = calculateCSP(values);
+interface IBenefitsSummaryProps {
+  benefits: any;
+  firstYearValueCSP: number;
+  firstYearValueCSR: number;
+  valuesCSP: any;
+  valuesCSR: any;
+}
 
+const BenefitsSummary = ({
+  benefits,
+  firstYearValueCSP,
+  firstYearValueCSR,
+  valuesCSP,
+  valuesCSR
+}: IBenefitsSummaryProps) => {
   return (
     <div>
       <Table className='table table-striped table-bordered'>
@@ -33,13 +38,13 @@ function BenefitsSummary(
             <td>
               <b>First Year Total Expected Value</b>
             </td>
-            <td>{Math.round(valueCSR)}</td>
-            <td>{Math.round(valueCSP)}</td>
+            <td>{Math.round(firstYearValueCSR)}</td>
+            <td>{Math.round(firstYearValueCSP)}</td>
           </tr>
         </tbody>
       </Table>
     </div>
   );
-}
+};
 
 export default BenefitsSummary;

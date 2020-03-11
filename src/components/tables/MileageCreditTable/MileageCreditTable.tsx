@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../App.scss';
 import axios from 'axios';
 import { Formik, FormikErrors } from 'formik';
 import Table from 'react-bootstrap/Table';

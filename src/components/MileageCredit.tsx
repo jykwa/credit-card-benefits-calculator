@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import "../App.scss";
-import axios from "axios";
-import { Formik, FormikErrors } from "formik";
-import Table from "react-bootstrap/Table";
+import React, { useState } from 'react';
+import '../App.scss';
+import axios from 'axios';
+import { Formik, FormikErrors } from 'formik';
+import Table from 'react-bootstrap/Table';
 
 // This is the API for wheretocredit
 function MileageCredit() {
@@ -10,20 +10,20 @@ function MileageCredit() {
   const [count, setCount] = useState(0);
   const [data, setData] = useState([]);
 
-  const url = "https://www.wheretocredit.com/api/2.0/calculate";
+  const url = 'https://www.wheretocredit.com/api/2.0/calculate';
   let requestBody = [
     {
-      id: "abcdxyz",
-      ticketingCarrier: "UA",
+      id: 'abcdxyz',
+      ticketingCarrier: 'UA',
       baseFareUSD: 483.9,
       segments: [
         {
-          origin: "SFO",
-          destination: "HKG",
+          origin: 'SFO',
+          destination: 'HKG',
           // departure: "2016-02-04T18:57:00.000Z",
-          carrier: "UA",
-          operatingCarrier: "UA",
-          bookingClass: "W"
+          carrier: 'UA',
+          operatingCarrier: 'UA',
+          bookingClass: 'W'
           // flightNumber: "472"
         }
       ]
@@ -35,12 +35,12 @@ function MileageCredit() {
       .post(url, requestBody)
       .then(function(response) {
         // handle success
-        console.log(response.data.value);
+        // console.log(response.data.value);
         setData(response.data.value);
       })
       .catch(function(error) {
         // handle error
-        console.log(error);
+        // console.log(error);
       })
       .finally(function() {
         // always executed
@@ -50,7 +50,7 @@ function MileageCredit() {
   function parseData(data: any) {
     return data.map((obj: any, index: number) => (
       <div>
-        <Table className="table table-striped table-bordered">
+        <Table className='table table-striped table-bordered'>
           <thead>
             <tr>
               <th>Airline Code</th>
@@ -75,7 +75,7 @@ function MileageCredit() {
                 <tr key={id}>
                   <td>{id}</td>
                   <td>{name}</td>
-                  <td>{rdm.map(mile => mile + " ")}</td>
+                  <td>{rdm.map(mile => mile + ' ')}</td>
                 </tr>
               )
             )}
@@ -112,49 +112,49 @@ function MileageCredit() {
   }
 
   const initialValues: FormValues = {
-    origin: "",
-    destination: "",
-    carrier: "",
-    bookingClass: ""
+    origin: '',
+    destination: '',
+    carrier: '',
+    bookingClass: ''
   };
 
   const error = {
-    origin: "Invalid origin",
-    destination: "Invalid destination",
-    carrier: "Invalid carrier",
-    bookingClass: "Invalid booking class"
+    origin: 'Invalid origin',
+    destination: 'Invalid destination',
+    carrier: 'Invalid carrier',
+    bookingClass: 'Invalid booking class'
   };
 
   return (
     <div>
-      <div className="row">
-        <div className="col-sm">
+      <div className='row'>
+        <div className='col-sm'>
           <h3>Find out how many miles you can earn on a revenue fare!</h3>
           <Formik
             initialValues={initialValues}
             validate={(values: FormValues) => {
               let errors: FormikErrors<FormValues> = {};
               if (!values.origin) {
-                errors.origin = "Required";
-              } else if (values.origin === "") {
+                errors.origin = 'Required';
+              } else if (values.origin === '') {
                 errors.origin = error.origin;
               }
 
               if (!values.destination) {
-                errors.destination = "Required";
-              } else if (values.destination === "") {
+                errors.destination = 'Required';
+              } else if (values.destination === '') {
                 errors.destination = error.destination;
               }
 
               if (!values.carrier) {
-                errors.carrier = "Required";
-              } else if (values.carrier === "") {
+                errors.carrier = 'Required';
+              } else if (values.carrier === '') {
                 errors.carrier = error.carrier;
               }
 
               if (!values.bookingClass) {
-                errors.bookingClass = "Required";
-              } else if (values.bookingClass === "") {
+                errors.bookingClass = 'Required';
+              } else if (values.bookingClass === '') {
                 errors.bookingClass = error.bookingClass;
               }
 
@@ -180,12 +180,12 @@ function MileageCredit() {
               /* and other goodies */
             }) => (
               <>
-                <form className="d-flex flex-column" onSubmit={handleSubmit}>
+                <form className='d-flex flex-column' onSubmit={handleSubmit}>
                   <div>
                     <label>Origin (e.g. SFO)</label>
                     <input
-                      type="text"
-                      name="origin"
+                      type='text'
+                      name='origin'
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.origin}
@@ -196,8 +196,8 @@ function MileageCredit() {
                   <div>
                     <label>Destination (e.g. LAX)</label>
                     <input
-                      type="text"
-                      name="destination"
+                      type='text'
+                      name='destination'
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.destination}
@@ -210,8 +210,8 @@ function MileageCredit() {
                   <div>
                     <label>Carrier (e.g. UA, DL, AA)</label>
                     <input
-                      type="text"
-                      name="carrier"
+                      type='text'
+                      name='carrier'
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.carrier}
@@ -221,8 +221,8 @@ function MileageCredit() {
                   <div>
                     <label>Booking Class (e.g. F, J, Y)</label>
                     <input
-                      type="text"
-                      name="fareClass"
+                      type='text'
+                      name='bookingClass'
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.bookingClass}
@@ -240,8 +240,8 @@ function MileageCredit() {
                 referral links? might need to add disclaimer or something
               */}
                   <button
-                    className="btn btn-primary btn-block"
-                    type="submit"
+                    className='btn btn-primary btn-block'
+                    type='submit'
                     disabled={isSubmitting}
                   >
                     Submit
@@ -256,7 +256,7 @@ function MileageCredit() {
           <p> (Data provided by wheretocredit.com)</p>
         </div>
 
-        <div className="col-sm">
+        <div className='col-sm'>
           <div>{parseData(data)}</div>
         </div>
       </div>

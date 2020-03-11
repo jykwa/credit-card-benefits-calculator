@@ -1,8 +1,8 @@
-import React from "react";
-import Table from "react-bootstrap/Table";
-import { calculateCSR, calculateCSP } from "../App";
+import React from 'react';
+import Table from 'react-bootstrap/Table';
+import { calculateCSR, calculateCSP } from '../App';
 
-function benefitsSummary(
+function BenefitsSummary(
   benefits: any,
   valuesCSR: any,
   valuesCSP: any,
@@ -13,7 +13,7 @@ function benefitsSummary(
 
   return (
     <div>
-      <Table className="table table-striped table-bordered">
+      <Table className='table table-striped table-bordered'>
         <thead>
           <tr>
             <th>Question</th>
@@ -42,4 +42,4 @@ function benefitsSummary(
   );
 }
 
-export default benefitsSummary;
+export default BenefitsSummary;

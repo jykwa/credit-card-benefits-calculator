@@ -1,17 +1,21 @@
-import React from "react";
-import "./App.scss";
-import { Formik, FormikErrors } from "formik";
-import benefitsSummary from "./components/BenefitsSummary";
-import MileageCredit from "./components/MileageCredit";
-import { benefits, CSR, CSP } from "./constants";
+import React from 'react';
+import './App.scss';
+import { Formik, FormikErrors } from 'formik';
+import BenefitsSummary from './components/BenefitsSummary';
+import MileageCredit from './components/MileageCredit';
+import {
+  CHASE_SAPPHIRE_PREFERRED,
+  CHASE_SAPPHIRE_RESERVE,
+  QUESTIONS
+} from './utils/constants/index';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <header>
-        Chase Sapphire Reserve vs. Chase Sapphire Preferred Calculator{" "}
+        Chase Sapphire Reserve vs. Chase Sapphire Preferred Calculator{' '}
       </header>
-      <div className="edges">
+      <div className='edges'>
         <Basic />
         <MileageCredit></MileageCredit>
       </div>
@@ -24,7 +28,7 @@ interface FormValues {
   diningSpend: number;
   nonBonusSpend: number;
   loungeSpend: number;
-  GE_TSA: number;
+  globalEntryTSA: number;
   doordashSpend: number;
 }
 
@@ -33,7 +37,7 @@ const initialValues: FormValues = {
   diningSpend: 0,
   nonBonusSpend: 0,
   loungeSpend: 0,
-  GE_TSA: 0,
+  globalEntryTSA: 0,
   doordashSpend: 0
 };
 
@@ -44,39 +48,39 @@ const Basic = () => {
       validate={(values: FormValues) => {
         let errors: FormikErrors<FormValues> = {};
         if (!values.travelSpend) {
-          errors.travelSpend = "Required";
+          errors.travelSpend = 'Required';
         } else if (values.travelSpend < 0) {
-          errors.travelSpend = benefits.travelSpend.error;
+          errors.travelSpend = QUESTIONS.travelSpend.error;
         }
 
         if (!values.diningSpend) {
-          errors.diningSpend = "Required";
+          errors.diningSpend = 'Required';
         } else if (values.diningSpend < 0) {
-          errors.diningSpend = benefits.diningSpend.error;
+          errors.diningSpend = QUESTIONS.diningSpend.error;
         }
 
         if (!values.nonBonusSpend) {
-          errors.nonBonusSpend = "Required";
+          errors.nonBonusSpend = 'Required';
         } else if (values.nonBonusSpend < 0) {
-          errors.nonBonusSpend = benefits.nonBonusSpend.error;
+          errors.nonBonusSpend = QUESTIONS.nonBonusSpend.error;
         }
 
         if (!values.loungeSpend) {
-          errors.loungeSpend = "Required";
+          errors.loungeSpend = 'Required';
         } else if (values.loungeSpend < 0) {
-          errors.loungeSpend = benefits.loungeSpend.error;
+          errors.loungeSpend = QUESTIONS.loungeSpend.error;
         }
 
-        if (!values.GE_TSA) {
-          errors.GE_TSA = "Required";
-        } else if (values.GE_TSA < 0) {
-          errors.GE_TSA = benefits.GE_TSA.error;
+        if (!values.globalEntryTSA) {
+          errors.globalEntryTSA = 'Required';
+        } else if (values.globalEntryTSA < 0) {
+          errors.globalEntryTSA = QUESTIONS.globalEntryTSA.error;
         }
 
         if (!values.doordashSpend) {
-          errors.doordashSpend = "Required";
+          errors.doordashSpend = 'Required';
         } else if (values.doordashSpend < 0) {
-          errors.doordashSpend = benefits.doordashSpend.error;
+          errors.doordashSpend = QUESTIONS.doordashSpend.error;
         }
 
         return errors;
@@ -102,14 +106,14 @@ const Basic = () => {
         /* and other goodies */
       }) => (
         <>
-          <div className="row">
-            <div className="col-sm">
-              <form className="d-flex flex-column" onSubmit={handleSubmit}>
+          <div className='row'>
+            <div className='col-sm'>
+              <form className='d-flex flex-column' onSubmit={handleSubmit}>
                 <div>
-                  <label>{benefits.travelSpend.question}</label>
+                  <label>{QUESTIONS.travelSpend.question}</label>
                   <input
-                    type="number"
-                    name="travelSpend"
+                    type='number'
+                    name='travelSpend'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.travelSpend}
@@ -120,10 +124,10 @@ const Basic = () => {
                 </div>
 
                 <div>
-                  <label>{benefits.diningSpend.question}</label>
+                  <label>{QUESTIONS.diningSpend.question}</label>
                   <input
-                    type="number"
-                    name="diningSpend"
+                    type='number'
+                    name='diningSpend'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.diningSpend}
@@ -134,10 +138,10 @@ const Basic = () => {
                 </div>
 
                 <div>
-                  <label>{benefits.nonBonusSpend.question}</label>
+                  <label>{QUESTIONS.nonBonusSpend.question}</label>
                   <input
-                    type="number"
-                    name="nonBonusSpend"
+                    type='number'
+                    name='nonBonusSpend'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.nonBonusSpend}
@@ -147,10 +151,10 @@ const Basic = () => {
                     errors.nonBonusSpend}
                 </div>
                 <div>
-                  <label>{benefits.loungeSpend.question}</label>
+                  <label>{QUESTIONS.loungeSpend.question}</label>
                   <input
-                    type="number"
-                    name="loungeSpend"
+                    type='number'
+                    name='loungeSpend'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.loungeSpend}
@@ -161,22 +165,24 @@ const Basic = () => {
                 </div>
 
                 <div>
-                  <label>{benefits.GE_TSA.question}</label>
+                  <label>{QUESTIONS.globalEntryTSA.question}</label>
                   <input
-                    type="number"
-                    name="GE_TSA"
+                    type='number'
+                    name='globalEntryTSA'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.GE_TSA}
+                    value={values.globalEntryTSA}
                   />
-                  {errors.GE_TSA && touched.GE_TSA && errors.GE_TSA}
+                  {errors.globalEntryTSA &&
+                    touched.globalEntryTSA &&
+                    errors.globalEntryTSA}
                 </div>
 
                 <div>
-                  <label>{benefits.doordashSpend.question}</label>
+                  <label>{QUESTIONS.doordashSpend.question}</label>
                   <input
-                    type="number"
-                    name="doordashSpend"
+                    type='number'
+                    name='doordashSpend'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.doordashSpend}
@@ -207,9 +213,9 @@ const Basic = () => {
 
             {/* <div>These are the inputted values: {JSON.stringify(values)}</div> */}
 
-            <div className="col-sm">
+            <div className='col-sm'>
               <div>
-                {benefitsSummary(benefits, valuesCSR, valuesCSP, values)}
+                {BenefitsSummary(QUESTIONS, valuesCSR, valuesCSP, values)}
               </div>
             </div>
           </div>
@@ -224,7 +230,7 @@ function getAnswer(values: {
   diningSpend: any;
   nonBonusSpend: any;
   loungeSpend: any;
-  GE_TSA: any;
+  globalEntryTSA: any;
   doordashSpend: any;
 }) {
   let valueCSR = calculateCSR(values);
@@ -240,7 +246,7 @@ let valuesCSR = {
   diningSpend: 0,
   nonBonusSpend: 0,
   loungeSpend: 0,
-  GE_TSA: 0,
+  globalEntryTSA: 0,
   doordashSpend: 0,
   annualFee: 0
 };
@@ -250,29 +256,32 @@ export function calculateCSR({
   diningSpend,
   nonBonusSpend,
   loungeSpend,
-  GE_TSA,
+  globalEntryTSA,
   doordashSpend
 }: {
   travelSpend: number;
   diningSpend: number;
   nonBonusSpend: number;
   loungeSpend: number;
-  GE_TSA: number;
+  globalEntryTSA: number;
   doordashSpend: number;
 }) {
-  valuesCSR.signupBonus = CSR.signupBonus;
+  valuesCSR.signupBonus = CHASE_SAPPHIRE_RESERVE.signupBonus;
 
-  valuesCSR.travelCredit = Math.min(travelSpend, CSR.travelCredit);
+  valuesCSR.travelCredit = Math.min(
+    travelSpend,
+    CHASE_SAPPHIRE_RESERVE.travelCredit
+  );
 
   valuesCSR.travelSpend =
-    (travelSpend - Math.min(travelSpend, CSR.travelCredit)) *
-    CSR.travelMultiplier;
-  valuesCSR.diningSpend = diningSpend * CSR.diningMultiplier;
+    (travelSpend - Math.min(travelSpend, CHASE_SAPPHIRE_RESERVE.travelCredit)) *
+    CHASE_SAPPHIRE_RESERVE.travelMultiplier;
+  valuesCSR.diningSpend = diningSpend * CHASE_SAPPHIRE_RESERVE.diningMultiplier;
   valuesCSR.nonBonusSpend = Math.round(nonBonusSpend * 0.01);
   valuesCSR.loungeSpend = loungeSpend || 0;
-  valuesCSR.GE_TSA = GE_TSA || 0;
+  valuesCSR.globalEntryTSA = globalEntryTSA || 0;
   valuesCSR.doordashSpend = doordashSpend || 0;
-  valuesCSR.annualFee = -CSR.annualFee;
+  valuesCSR.annualFee = -CHASE_SAPPHIRE_RESERVE.annualFee;
 
   return Object.values(valuesCSR).reduce((a, b) => a + b, 0);
 }
@@ -284,7 +293,7 @@ let valuesCSP = {
   diningSpend: 0,
   nonBonusSpend: 0,
   loungeSpend: 0,
-  GE_TSA: 0,
+  globalEntryTSA: 0,
   doordashSpend: 0,
   annualFee: 0
 };
@@ -294,22 +303,24 @@ export function calculateCSP({
   diningSpend,
   nonBonusSpend,
   loungeSpend = 0,
-  GE_TSA = 0,
+  globalEntryTSA = 0,
   doordashSpend = 0
 }: {
   travelSpend: number;
   diningSpend: number;
   nonBonusSpend: number;
   loungeSpend: number;
-  GE_TSA: number;
+  globalEntryTSA: number;
   doordashSpend: number;
 }) {
-  valuesCSP.signupBonus = CSP.signupBonus;
+  valuesCSP.signupBonus = CHASE_SAPPHIRE_PREFERRED.signupBonus;
 
-  valuesCSP.travelSpend = travelSpend * CSP.travelMultiplier;
-  valuesCSP.diningSpend = diningSpend * CSP.diningMultiplier;
+  valuesCSP.travelSpend =
+    travelSpend * CHASE_SAPPHIRE_PREFERRED.travelMultiplier;
+  valuesCSP.diningSpend =
+    diningSpend * CHASE_SAPPHIRE_PREFERRED.diningMultiplier;
   valuesCSP.nonBonusSpend = Math.round(nonBonusSpend * 0.01);
-  valuesCSP.annualFee = -CSP.annualFee;
+  valuesCSP.annualFee = -CHASE_SAPPHIRE_PREFERRED.annualFee;
 
   return Object.values(valuesCSP).reduce((a, b) => a + b, 0);
 }

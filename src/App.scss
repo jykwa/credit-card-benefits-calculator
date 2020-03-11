@@ -1,0 +1,22 @@
+header {
+  text-align: center;
+  font-size: 3em;
+}
+
+.btn {
+  max-width: 20%;
+  align-items: center;
+}
+
+input {
+  margin-left: 5px !important;
+  width: 15%;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.edges {
+  margin: 10px;
+}

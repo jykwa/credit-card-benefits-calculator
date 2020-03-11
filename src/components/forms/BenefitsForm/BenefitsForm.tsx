@@ -27,11 +27,22 @@ const initialValues: IFormValues = {
 };
 
 const BenefitsForm = () => {
+  const benefitsSummaryValues = {
+    benefits: QUESTIONS,
+    firstYearValueCSP: 0,
+    firstYearValueCSR: 0,
+    valuesCSP: valuesCSP,
+    valuesCSR: valuesCSR
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validate={(values: IFormValues) => {
         let errors: FormikErrors<IFormValues> = {};
+        benefitsSummaryValues.firstYearValueCSP = calculateCSP(values);
+        benefitsSummaryValues.firstYearValueCSR = calculateCSR(values);
+
         if (!values.travelSpend) {
           errors.travelSpend = 'Required';
         } else if (values.travelSpend < 0) {
@@ -200,13 +211,7 @@ const BenefitsForm = () => {
 
             <div className='col-sm'>
               <div>
-                <BenefitsSummary
-                  benefits={QUESTIONS}
-                  firstYearValueCSP={calculateCSP(values)}
-                  firstYearValueCSR={calculateCSR(values)}
-                  valuesCSP={valuesCSP}
-                  valuesCSR={valuesCSR}
-                />
+                <BenefitsSummary {...benefitsSummaryValues} />
                 {/* {BenefitsSummary(QUESTIONS, valuesCSR, valuesCSP, values)} */}
               </div>
             </div>

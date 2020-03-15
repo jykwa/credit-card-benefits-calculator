@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 
 import MileageCredit from './components/tables/MileageCreditTable/MileageCreditTable';
-import BenefitsForm from './components/forms/BenefitsForm';
+import BenefitsFormContainer from './components/forms/BenefitsFormContainer';
 
 import Header from './components/Header/Header';
 import { Route, Switch } from 'react-router-dom';
@@ -15,7 +15,7 @@ const App = () => (
       <Route exact path='/home' component={Home} />
     </Switch>
     <div className='edges'>
-      <BenefitsForm />
+      <BenefitsFormContainer />
       <MileageCredit></MileageCredit>
     </div>
   </div>

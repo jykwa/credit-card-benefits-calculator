@@ -23,14 +23,5 @@ export const QUESTIONS = {
   doordashSpend: {
     question: 'How much do you value $60 DoorDash credit?',
     error: 'Invalid DoorDash amount'
-  },
-  signupBonus: {
-    question: 'Signup Bonus amount'
-  },
-  travelCredit: {
-    question: 'Travel Credit $300 (CSR, does not earn points)'
-  },
-  annualFee: {
-    question: 'Annual Fee'
   }
 };
